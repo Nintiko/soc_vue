@@ -11,7 +11,7 @@
           </v-col>
           <v-col cols="10" class="text-left">
             <h3>
-              {{userData.name}}
+              {{ userData.name }}
             </h3>
             <p>
               Веб-сайт:

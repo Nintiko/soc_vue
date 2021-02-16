@@ -1,11 +1,16 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import LogIn from '../views/LogIn.vue'
 import UserProfile from '../views/UserProfile.vue'
 import AllUsers from '../views/AllUsersProfiles.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    component: LogIn
+  },
   {
     path: '/user/:id',
     component: UserProfile
