@@ -1,11 +1,11 @@
 <template>
   <div>
     <v-list v-for="(userData, i) in users" :key="i">
-      <v-list-item link :to="`/user/${userData.id}`">
+      <v-list-item link :to="`/user/${userData.id-1}`">
         <v-row class="text-left">
           <v-col cols="2">
             <img
-              v-bind:src="`https://randomuser.me/api/portraits/men/${userData.id}.jpg`"
+              :src="`https://randomuser.me/api/portraits/men/${userData.id}.jpg`"
               style="max-width: 100%"
             />
           </v-col>
@@ -43,7 +43,7 @@ export default {
   methods: {
     getUsers() {
       this.axios
-        .get(`http://jsonplaceholder.typicode.com/users`)
+        .get('https://api.jsonbin.io/b/602e44eb4177c81b39c7e0f7/3')
         .then((response) => {
           this.users = response.data;
         });
@@ -51,10 +51,12 @@ export default {
   },
   mounted() {
     this.getUsers();
+    this.$store.commit('navbarShow');
   },
   watch: {
     $route() {
       this.getUsers();
+      this.$store.commit('navbarShow');
     },
   },
 };

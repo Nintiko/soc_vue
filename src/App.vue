@@ -7,7 +7,7 @@
       expand-on-hover
       permanent
       right
-      :class="`d-${this.$store.navbarPos}`"
+      :class="`d-${this.$store.state.navbarPos}`"
     >
       <v-list>
         <v-list-item class="px-2">

@@ -6,17 +6,17 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     id:'',
-    navbarPos: "block"
+    navbarPos: 'block'
   },
   mutations: {
     rememberId(state,i){
       state.id = i;
     },
     navbarHide(state){
-      state.navbarPos = "none";
+      state.navbarPos = 'none';
     },
     navbarShow(state){
-      state.navbarPos = "block";
+      state.navbarPos = 'block';
     }
   },
   actions: {

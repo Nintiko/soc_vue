@@ -2,8 +2,8 @@
   <div>
     <v-row class="text-left">
       <v-col cols="10">
-        <h1 class="green--text text--darken-2">
-          <v-icon large color="green darken-2">mdi-account-outline</v-icon>
+        <h1 class="blue--text text--darken-2 accent-1">
+          <v-icon large color="blue accent-1 darken-2">mdi-account-outline</v-icon>
           {{ userData.name }}
         </h1>
       </v-col>
@@ -100,11 +100,13 @@ export default {
   mounted() {
     this.getUserData();
     this.getUserPosts();
+    this.$store.commit('navbarShow');
   },
   watch: {
     $route() {
       this.getUserData();
       this.getUserPosts();
+      this.$store.commit('navbarShow');
     },
   },
 };

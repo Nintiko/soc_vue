@@ -53,7 +53,7 @@ export default {
   },
   mounted() {
     this.$store.commit('navbarHide');
-    console.log(this.$store.navbarPos);
+    console.log(this.$store.state.navbarPos);
   },
   watch: {
     $route() {
