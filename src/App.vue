@@ -7,35 +7,30 @@
       expand-on-hover
       permanent
       right
+      :class="`d-${this.$store.navbarPos}`"
     >
       <v-list>
         <v-list-item class="px-2">
           <v-list-item-avatar>
             <v-img
               size="100"
-              src="https://randomuser.me/api/portraits/women/85.jpg"
+              :src="userData.photo"
             ></v-img>
           </v-list-item-avatar>
         </v-list-item>
 
         <v-list-item link >
           <v-list-item-content>
-            <v-list-item-title class="title"> Sandra Adams </v-list-item-title>
-            <v-list-item-subtitle>sandra_a88@gmail.com</v-list-item-subtitle>
+            <v-list-item-title class="title"> {{userData.name}} </v-list-item-title>
+            <v-list-item-subtitle>{{userData.email}}</v-list-item-subtitle>
           </v-list-item-content> 
         </v-list-item>
       </v-list>
 
       <v-divider></v-divider>
 
-      <v-list nav dense shaped>
-        <v-list-item link>
-          <v-list-item-icon>
-            <v-icon>mdi-home-outline</v-icon>
-          </v-list-item-icon>
-          <v-list-item-title>Главная</v-list-item-title>
-        </v-list-item>
-        <v-list-item link to="/user" exact>
+      <v-list dense shaped>
+        <v-list-item link :to="`/user/${userData.id-1}`" exact>
           <v-list-item-icon>
             <v-icon>mdi-account-outline</v-icon>
           </v-list-item-icon>
@@ -61,11 +56,28 @@
 <script>
 export default {
   name: "App",
-
-  components: {},
-
   data: () => ({
-    nav: true,
+    userData:"",
   }),
+  components: {},
+  methods: {
+    getUserData() {
+      this.axios
+        .get(
+          `https://api.jsonbin.io/b/602e44eb4177c81b39c7e0f7/3`
+        )
+        .then((response) => {
+          this.userData = response.data[this.$store.state.id];
+        });
+    }
+  },
+  mounted() {
+    this.getUserData();
+  },
+  watch: {
+    $route() {
+      this.getUserData();
+    },
+  }
 };
 </script>

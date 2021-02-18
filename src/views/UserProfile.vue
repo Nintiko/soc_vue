@@ -11,7 +11,7 @@
     <v-row class="text-left">
       <v-col cols="2">
         <img
-          v-bind:src="`https://randomuser.me/api/portraits/men/${$route.params.id}.jpg`"
+          v-bind:src="userData.photo"
           style="max-width: 100%"
         />
       </v-col>
@@ -52,7 +52,7 @@
                 <v-img
                   class="elevation-6"
                   alt=""
-                  :src="`https://randomuser.me/api/portraits/men/${$route.params.id}.jpg`"
+                  :src="userData.photo"
                 ></v-img>
               </v-list-item-avatar>
 
@@ -80,10 +80,11 @@ export default {
     getUserData() {
       this.axios
         .get(
-          `http://jsonplaceholder.typicode.com/users/${this.$route.params.id}`
+          `https://api.jsonbin.io/b/602e44eb4177c81b39c7e0f7/3`
         )
         .then((response) => {
-          this.userData = response.data;
+          console.log(response.data[this.$route.params.id].photo);
+          this.userData = response.data[this.$route.params.id];
         });
     },
     getUserPosts() {
